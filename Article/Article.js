@@ -112,3 +112,47 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+
+
+// Step 1 Creating the component for building a card to pull data into
+function createCard(titleArticle, dateArticle, paraOne, paraTwo, paraThree, buttonSpan) {
+  // new elements
+  const cardDiv = document.createElement('div');
+  const cardTitle = document.createElement('h2');
+  const cardDate = document.createElement('p');
+  const cardParaOne = document.createElement('p');
+  const cardParaTwo = document.createElement('p');
+  const cardParaThree = document.createElement('p');
+  const cardButtSpan = document.createElement('span');
+
+  //element structure
+  cardDiv.appendChild(cardTitle)
+  cardDiv.appendChild(cardDate)
+  cardDiv.appendChild(cardParaOne)
+  cardDiv.appendChild(cardParaTwo)
+  cardDiv.appendChild(cardParaThree)
+  cardDiv.appendChild(cardButtSpan)
+
+  // class names for cards
+  cardDiv.classList.add('article')
+  cardDate.classList.add('date')
+  cardButtSpan.classList.add('expandButton')
+
+  // setting textContent
+  cardTitle.textContent = titleArticle
+  cardDate.textContent = dateArticle
+
+  cardParaOne.textContent = paraOne
+  cardParaTwo.textContent = paraTwo
+  cardParaThree.textContent = paraThree
+
+  cardButtSpan.textContenet = buttonSpan
+
+
+
+
+  return cardDiv
+
+}

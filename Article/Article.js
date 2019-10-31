@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Android Development in 1855, Antebellum Android',
+    date: 'Oct 30, 1855',
+    firstParagraph: `CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR  `,
+
+    secondParagraph: `CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR  `,
+
+    thirdParagraph: `CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR CIVIL WARR ` 
   }
 ];
 
@@ -113,11 +122,15 @@ const data = [
 
 */
 
+const articleEach = document.querySelector('.articles')
 
-
+data.forEach(dataEl => {
+  articleEach.appendChild(createCard(dataEl.title, dataEl.date, dataEl.firstParagraph, dataEl.secondParagraph, dataEl.thirdParagraph))
+})
 
 // Step 1 Creating the component for building a card to pull data into
-function createCard(titleArticle, dateArticle, paraOne, paraTwo, paraThree, buttonSpan) {
+function createCard(titleArticle, dateArticle, paraOne, paraTwo, paraThree) {
+  
   // new elements
   const cardDiv = document.createElement('div');
   const cardTitle = document.createElement('h2');
@@ -126,6 +139,7 @@ function createCard(titleArticle, dateArticle, paraOne, paraTwo, paraThree, butt
   const cardParaTwo = document.createElement('p');
   const cardParaThree = document.createElement('p');
   const cardButtSpan = document.createElement('span');
+  const cardButt = document.createElement('button');
 
   //element structure
   cardDiv.appendChild(cardTitle)
@@ -135,6 +149,8 @@ function createCard(titleArticle, dateArticle, paraOne, paraTwo, paraThree, butt
   cardDiv.appendChild(cardParaThree)
   cardDiv.appendChild(cardButtSpan)
 
+  cardButtSpan.appendChild(cardButt)
+
   // class names for cards
   cardDiv.classList.add('article')
   cardDate.classList.add('date')
@@ -143,16 +159,19 @@ function createCard(titleArticle, dateArticle, paraOne, paraTwo, paraThree, butt
   // setting textContent
   cardTitle.textContent = titleArticle
   cardDate.textContent = dateArticle
-
   cardParaOne.textContent = paraOne
   cardParaTwo.textContent = paraTwo
   cardParaThree.textContent = paraThree
+  cardButt.textContent = '\u2630';
 
-  cardButtSpan.textContenet = buttonSpan
+  
 
-
-
+  cardButtSpan.addEventListener('click', event => {
+    //console.log('button clicked', event.target)
+    // 1. toggle expand button
+    cardDiv.classList.toggle('article-open')
+    
+  })
 
   return cardDiv
-
 }
